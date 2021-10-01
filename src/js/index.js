@@ -27,19 +27,26 @@ function render(variables = {}) {
   // here we ask the logical questions to make decisions on how to build the html
   // if includeCover==false then we reset the cover code without the <img> tag to make the cover transparent.
   let cover = `<div class="cover"><img src="${variables.background}" /></div>`;
-  let position = `<ul class="position-right">${variables.socialMediaPosition}</ul>`;
-
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
-  if (variables.socialMediaPosition == "position-left")
-    position = `<ul>${variables.socialMediaPosition}</ul>`;
+  if (variables.name == null) variables.name = "FirstName";
+  if (variables.lastname == null) variables.lastname = "LastName";
+  if (variables.role == null) variables.role = "Role";
+  if (variables.city == null) variables.city = "City";
+  if (variables.country == null) variables.country = "Country";
+  if (variables.twitter == null) variables.twitter = "Twitter Username";
+  if (variables.linkedin == null) variables.linkedin = "LinkedIn Username";
+  if (variables.instagram == null) variables.instagram = "Instagram Username";
+  if (variables.github == "alesanchezr") variables.github = "Github Username";
+
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
-            ${position}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name}</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
+          <h1>${variables.name} ${variables.lastname}</h1>
+          <h2>${variables.role}</h2>
+          <h4>${variables.city}, ${variables.country}</h4>
+          <h3>${variables.twitter}, ${variables.linkedin}</h3>
+          <h3>${variables.instagram}, ${variables.github}</h3>
           <ul class=${variables.socialMediaPosition}>
             <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
             <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
@@ -68,7 +75,7 @@ window.onload = function() {
     github: "alesanchezr",
     linkedin: null,
     instagram: null,
-    name: "Your Name",
+    name: null,
     lastname: null,
     role: null,
     country: null,
